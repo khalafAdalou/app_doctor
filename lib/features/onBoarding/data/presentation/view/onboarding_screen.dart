@@ -14,7 +14,7 @@ class OnboardingScreen extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(top: 30.h, bottom: 30.h),
+              padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
               child: Column(
                 children: [
                   const DocLogoAndName(),
@@ -25,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
+                          'Manage & schedule all of your medical appointments easily with Docdoc to get a new experience.',
                           style: TextStyles.font13GrayRegular,
                           textAlign: TextAlign.center,
                         ),
