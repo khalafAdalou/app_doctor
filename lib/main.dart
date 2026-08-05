@@ -1,12 +1,10 @@
-import 'package:app_doctor/features/onBoarding/data/presentation/view/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/onboarding/presentation/view/onboarding_screen.dart';
+
 void main() {
   runApp(const DoctorApp());
-
-
-  
 }
 class DoctorApp extends StatelessWidget {
   const DoctorApp({super.key});

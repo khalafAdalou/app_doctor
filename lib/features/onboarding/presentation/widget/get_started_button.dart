@@ -1,5 +1,6 @@
 import 'package:app_doctor/core/theming/colors.dart';
 import 'package:app_doctor/core/theming/styles.dart';
+import 'package:app_doctor/features/Login/view/login_Screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,6 +11,7 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>LoginView()));
        // context.pushNamed(Routes.loginScreen);
       },
       style: ButtonStyle(
