@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/di/dependency_injection.dart';
 import 'features/onboarding/presentation/view/onboarding_screen.dart';
 
 void main() {
+  setupGetIt();
   runApp(const DoctorApp());
 }
 class DoctorApp extends StatelessWidget {

@@ -10,7 +10,7 @@ class AuthTextField extends StatefulWidget {
     this.keyboardType,
     this.textInputAction,
     this.onSubmitted,
-    this.isPassword = false,
+    this.isPassword = false, required this.validator,
   });
 
   final TextEditingController controller;
@@ -18,6 +18,8 @@ class AuthTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
+  final Function(String?) validator;
+
   final bool isPassword;
 
   @override
@@ -98,6 +100,10 @@ class _AuthTextFieldState extends State<AuthTextField> {
               )
             : null,
       ),
+      validator: (value){
+        return widget.validator(value);
+
+      },
     );
   }
 }
