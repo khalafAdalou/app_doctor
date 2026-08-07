@@ -2,6 +2,8 @@ import 'package:app_doctor/core/network/api_service.dart';
 import 'package:app_doctor/core/network/dio_factory.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
 import 'package:app_doctor/features/Login/data/repo/loginRepo.dart';
+import 'package:app_doctor/features/SignUp/data/cubit/signup_cubit.dart';
+import 'package:app_doctor/features/SignUp/repository/SignUpRepo.dart';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -16,4 +18,7 @@ void setupGetIt() {
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio),);
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+  getIt.registerLazySingleton<Signuprepo>(() => Signuprepo(getIt()));
+  getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
+
 }

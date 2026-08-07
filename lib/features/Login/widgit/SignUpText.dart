@@ -1,6 +1,10 @@
+import 'package:app_doctor/core/di/dependency_injection.dart';
 import 'package:app_doctor/core/theming/colors.dart';
+import 'package:app_doctor/features/SignUp/data/cubit/signup_cubit.dart';
+import 'package:app_doctor/features/SignUp/presentation/view/SignUp_Screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class SignUpText extends StatelessWidget {
@@ -19,7 +23,18 @@ class SignUpText extends StatelessWidget {
           TextSpan(
             text: 'Sign Up',
             recognizer: TapGestureRecognizer()
-              ..onTap = () {},
+              ..onTap = () {
+              Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return BlocProvider<SignupCubit>(
+                      create: (_) => getIt<SignupCubit>(),
+                      child: const SignupScreen(),
+                    );
+                  },
+                ),
+              );
+              },
             style: const TextStyle(
               color: ColorsManager.mainBlue,
               fontSize: 15,

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/Route/AppRouter.dart';
+import 'core/Route/routes.dart';
 import 'core/di/dependency_injection.dart';
 import 'features/onboarding/presentation/view/onboarding_screen.dart';
 
-void main() {
+
+void main() async{
   setupGetIt();
-  runApp(const DoctorApp());
+  // To fix texts being hidden bug in flutter_screenutil in release mode.
+  await ScreenUtil.ensureScreenSize();
+  runApp(DoctorApp(
+    appRouter: AppRouter(),
+  ));
 }
 class DoctorApp extends StatelessWidget {
-  const DoctorApp({super.key});
+  const DoctorApp({super.key, required this.appRouter});
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +25,11 @@ class DoctorApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
+          initialRoute: Routes.onBoardingScreen,
+          onGenerateRoute: appRouter.generateRoute,
           home: child,
         );
       },

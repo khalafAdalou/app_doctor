@@ -1,7 +1,6 @@
 import 'package:app_doctor/core/helper/extensions.dart';
 import 'package:app_doctor/core/theming/colors.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
-import 'package:app_doctor/features/Login/data/model/login_request_body.dart';
 import 'package:app_doctor/features/Login/widgit/AuthTextField.dart';
 import 'package:app_doctor/features/Login/widgit/LoginButton.dart';
 import 'package:app_doctor/features/Login/widgit/LoginHeader.dart';
@@ -10,8 +9,6 @@ import 'package:app_doctor/features/Login/widgit/TermsAndConditionsText.dart';
 import 'package:app_doctor/features/Login/widgit/login_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../widgit/LogoStackWidget.dart' show LogoStackWidget;
 import '../widgit/RememberForgotRow.dart' show RememberForgotRow;
 
 class LoginView extends StatefulWidget {
@@ -22,11 +19,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  // final TextEditingController emailController =
-  //     TextEditingController();
-  //
-  // final TextEditingController passwordController =
-  //     TextEditingController();
 
   bool rememberMe = false;
 
@@ -121,13 +113,16 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void checkLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().loginFun(
-        LoginRequestBody(
-          email: context.read<LoginCubit>().emailController.text,
-          password: context.read<LoginCubit>().passwordController.text,
-        ),
-      );
-    }
+if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+  context.read<LoginCubit>().loginFun();
+}
+// if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+    //   context.read<LoginCubit>().loginFun(
+    //     LoginRequestBody(
+    //       email: context.read<LoginCubit>().emailController.text,
+    //       password: context.read<LoginCubit>().passwordController.text,
+    //     ),
+    //   );
+    // }
   }
 }

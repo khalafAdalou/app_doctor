@@ -3,7 +3,6 @@ import 'package:app_doctor/features/Login/data/model/login_request_body.dart';
 import 'package:app_doctor/features/Login/data/repo/loginRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -11,16 +10,19 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(this._loginRepo) : super(const LoginState.initial());
 
-  final TextEditingController emailController =
-  TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
-  final TextEditingController passwordController =
-  TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void loginFun(LoginRequestBody loginRequestBody) async {
+  void loginFun() async {
     emit(LoginState.loading());
-    final response = await _loginRepo.login(loginRequestBody);
+    final response = await _loginRepo.login(
+      LoginRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
     response.when(
       success: (loginResponse) {
         emit(LoginState.success(loginResponse));
