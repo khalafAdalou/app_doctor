@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "395686173932",
+    "project_id": "doctor-app-khalaf",
+    "storage_bucket": "doctor-app-khalaf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395686173932:android:76eb1ec4d79dceb2e199c9",
+        "android_client_info": {
+          "package_name": "com.example.app_doctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvWBTgwtwaGQLoZ2hlLKUftENZDP-NJmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
