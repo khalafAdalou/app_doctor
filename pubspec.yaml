@@ -58,6 +58,7 @@ dependencies:
   flutter_svg: ^2.0.9
   # for adapting screen and font size.
   flutter_screenutil: ^5.9.0
+  firebase_core: ^4.13.0
   #firebase_core: ^4.13.0
 
 dev_dependencies:
