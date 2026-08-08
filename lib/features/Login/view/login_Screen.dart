@@ -9,6 +9,7 @@ import 'package:app_doctor/features/Login/widgit/TermsAndConditionsText.dart';
 import 'package:app_doctor/features/Login/widgit/login_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/helper/app_regex.dart';
 import '../widgit/RememberForgotRow.dart' show RememberForgotRow;
 
 class LoginView extends StatefulWidget {
@@ -24,16 +25,30 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void dispose() {
-    context.read<LoginCubit>().emailController.dispose();
-    context.read<LoginCubit>().passwordController.dispose();
+    context
+        .read<LoginCubit>()
+        .emailController
+        .dispose();
+    context
+        .read<LoginCubit>()
+        .passwordController
+        .dispose();
     super.dispose();
   }
 
   void login() {
     FocusScope.of(context).unfocus();
 
-    final email = context.read<LoginCubit>().emailController.text.trim();
-    final password = context.read<LoginCubit>().passwordController.text.trim();
+    final email = context
+        .read<LoginCubit>()
+        .emailController
+        .text
+        .trim();
+    final password = context
+        .read<LoginCubit>()
+        .passwordController
+        .text
+        .trim();
 
     debugPrint('Email: $email');
     debugPrint('Password: $password');
@@ -53,31 +68,53 @@ class _LoginViewState extends State<LoginView> {
               const LoginHeader(),
               verticalSpace(32),
               Form(
-                key: context.read<LoginCubit>().formKey,
+                key: context
+                    .read<LoginCubit>()
+                    .formKey,
                 child: Column(
                   children: [
                     AuthTextField(
-                      controller: context.read<LoginCubit>().emailController,
+                      controller: context
+                          .read<LoginCubit>()
+                          .emailController,
                       hintText: 'Email',
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
+                      validator: (value) {
+                        final email = value?.trim() ?? '';
+
+                        if (email.isEmpty) {
                           return 'Please enter email';
                         }
+
+                        if (!AppRegex.isEmailValid(email)) {
+                          return 'Please enter a valid email';
+                        }
+
+                        return null;
                       },
                     ),
                     verticalSpace(18),
                     AuthTextField(
-                      controller: context.read<LoginCubit>().passwordController,
+                      controller: context
+                          .read<LoginCubit>()
+                          .passwordController,
                       hintText: 'Password',
                       isPassword: true,
                       textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => login(),
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
+                      onSubmitted: (_) => checkLogin(context),
+                      validator: (value) {
+                        final password = value ?? '';
+
+                        if (password.isEmpty) {
                           return 'Please enter password';
                         }
+
+                        if (!AppRegex.isPasswordValid(password)) {
+                          return 'Please enter a valid password';
+                        }
+
+                        return null;
                       },
                     ),
                   ],
@@ -95,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                 onForgotPressed: () {},
               ),
               const SizedBox(height: 24),
-              LoginButton(onPressed:(){
+              LoginButton(onPressed: () {
                 checkLogin(context);
               }),
 
@@ -113,8 +150,14 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void checkLogin(BuildContext context) {
-if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-  context.read<LoginCubit>().loginFun();
+    FocusScope.of(context).unfocus();
+
+    final cubit = context.read<LoginCubit>();
+
+    if (cubit.formKey.currentState?.validate() ?? false) {
+      cubit.loginFun();
+    }
+  }
 }
 // if (context.read<LoginCubit>().formKey.currentState!.validate()) {
     //   context.read<LoginCubit>().loginFun(
@@ -124,5 +167,5 @@ if (context.read<LoginCubit>().formKey.currentState!.validate()) {
     //     ),
     //   );
     // }
-  }
-}
+
+

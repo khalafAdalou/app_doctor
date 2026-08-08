@@ -7,13 +7,23 @@ import 'core/di/dependency_injection.dart';
 import 'features/onboarding/presentation/view/onboarding_screen.dart';
 
 
-void main() async{
+Future<void> bootstrap() async {
+ // WidgetsFlutterBinding.ensureInitialized();
+
   setupGetIt();
+
   // To fix texts being hidden bug in flutter_screenutil in release mode.
   await ScreenUtil.ensureScreenSize();
-  runApp(DoctorApp(
-    appRouter: AppRouter(),
-  ));
+
+  runApp(
+    DoctorApp(
+      appRouter: AppRouter(),
+    ),
+  );
+}
+
+void main() async {
+  await bootstrap();
 }
 class DoctorApp extends StatelessWidget {
   const DoctorApp({super.key, required this.appRouter});

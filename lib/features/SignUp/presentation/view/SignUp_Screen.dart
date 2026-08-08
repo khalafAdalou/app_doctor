@@ -1,3 +1,4 @@
+import 'package:app_doctor/core/helper/app_regex.dart';
 import 'package:app_doctor/core/helper/extensions.dart';
 import 'package:app_doctor/core/theming/colors.dart';
 import 'package:app_doctor/features/Login/widgit/AuthTextField.dart';
@@ -83,10 +84,18 @@ class _SignupScreenState extends State<SignupScreen> {
                       hintText: 'Email',
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
+                      validator: (value) {
+                        final email = value?.trim() ?? '';
+
+                        if (email.isEmpty) {
                           return 'Please enter email';
                         }
+
+                        if (!AppRegex.isEmailValid(email)) {
+                          return 'Please enter a valid email';
+                        }
+
+                        return null;
                       },
                     ),
                     verticalSpace(18),
@@ -97,12 +106,20 @@ class _SignupScreenState extends State<SignupScreen> {
                       hintText: 'Password',
                       isPassword: true,
                       textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => login(),
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
-                          return 'Please enter password';
-                        }
-                      },
+                      onSubmitted: (_) => validateThenDoSignup(context),
+                        validator: (value) {
+                          final password = value ?? '';
+
+                          if (password.isEmpty) {
+                            return 'Please enter password';
+                          }
+
+                          if (!AppRegex.isPasswordValid(password)) {
+                            return 'Please enter a valid password';
+                          }
+
+                          return null;
+                        },
                     ),
                     verticalSpace(18),
                     AuthTextField(
@@ -112,11 +129,19 @@ class _SignupScreenState extends State<SignupScreen> {
                       hintText: 'confirm password',
                       isPassword: true,
                       textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => login(),
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
+                      onSubmitted: (_) => validateThenDoSignup(context),
+                      validator: (value) {
+                        final password = value ?? '';
+
+                        if (password.isEmpty) {
                           return 'Please enter password';
                         }
+
+                        if (!AppRegex.isPasswordValid(password)) {
+                          return 'Please enter a valid password';
+                        }
+
+                        return null;
                       },
                     ),
                     verticalSpace(18),
@@ -126,9 +151,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.done,
                       onSubmitted: (_) => login(),
-                      validator: (String? p1) {
-                        if (p1!.isEmpty || p1 == null) {
+                      validator: (value) {
+                        final phone = value ?? '';
+
+                        if (phone!.isEmpty || phone == null) {
                           return 'Please enter phone';
+                        }
+                        if (!AppRegex.isPhoneNumberValid(phone)) {
+                          return 'Please enter a valid phone';
                         }
                       },
                     ),
@@ -156,8 +186,15 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void validateThenDoSignup(BuildContext context) {
-    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-      context.read<SignupCubit>().emitSignupStates();
+    // if (context.read<SignupCubit>().formKey.currentState!.validate()) {
+    //   context.read<SignupCubit>().emitSignupStates();
+    // }
+    FocusScope.of(context).unfocus();
+
+    final cubit = context.read<SignupCubit>();
+
+    if (cubit.formKey.currentState?.validate() ?? false) {
+      cubit.emitSignupStates();
     }
   }
 }
