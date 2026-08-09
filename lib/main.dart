@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/Route/AppRouter.dart';
 import 'core/Route/routes.dart';
 import 'core/di/dependency_injection.dart';
