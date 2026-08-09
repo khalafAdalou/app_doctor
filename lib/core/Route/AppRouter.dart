@@ -1,5 +1,5 @@
 import 'package:app_doctor/core/Route/routes.dart';
-import 'package:app_doctor/features/Home/home_screen.dart';
+import 'package:app_doctor/features/Home/view/home_screen.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
 import 'package:app_doctor/features/Login/view/login_Screen.dart';
 import 'package:app_doctor/features/SignUp/data/cubit/signup_cubit.dart';

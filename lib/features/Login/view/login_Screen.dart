@@ -102,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                       hintText: 'Password',
                       isPassword: true,
                       textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => checkLogin(context),
+                   //   onSubmitted: (_) => checkLogin(context),
                       validator: (value) {
                         final password = value ?? '';
 
@@ -110,9 +110,9 @@ class _LoginViewState extends State<LoginView> {
                           return 'Please enter password';
                         }
 
-                        if (!AppRegex.isPasswordValid(password)) {
-                          return 'Please enter a valid password';
-                        }
+                        // if (!AppRegex.isPasswordValid(password)) {
+                        //   return 'Please enter a valid password';
+                        // }
 
                         return null;
                       },

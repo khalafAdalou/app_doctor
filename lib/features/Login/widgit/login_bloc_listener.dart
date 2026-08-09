@@ -1,4 +1,4 @@
-import 'package:app_doctor/features/Home/home_screen.dart';
+import 'package:app_doctor/features/Home/view/home_screen.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_state.dart';
 import 'package:flutter/material.dart';
