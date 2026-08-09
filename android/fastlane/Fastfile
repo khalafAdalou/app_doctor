@@ -1,11 +1,18 @@
-
 default_platform(:android)
 
 platform :android do
   desc "Lane for Android Firebase App Distribution"
+
   lane :firebase_distribution do
-    sh "flutter clean"
-    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+
+    # نرجع من android إلى root مشروع Flutter
+    sh "cd .. && flutter clean"
+    sh "cd .. && flutter pub get"
+
+    # Build Production APK
+    sh "cd .. && flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+
+    # Upload APK to Firebase App Distribution
     firebase_app_distribution(
       app: "1:395686173932:android:76eb1ec4d79dceb2e199c9",
       android_artifact_type: "APK",
