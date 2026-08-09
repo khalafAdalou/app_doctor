@@ -28,9 +28,6 @@ void main() async {
 class DoctorApp extends StatelessWidget {
   const DoctorApp({super.key, required this.appRouter});
   final AppRouter appRouter;
-
-
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
