@@ -1,5 +1,7 @@
 import 'package:app_doctor/core/network/api_service.dart';
 import 'package:app_doctor/core/network/dio_factory.dart';
+import 'package:app_doctor/features/Home/data/apis/home_api_service.dart';
+import 'package:app_doctor/features/Home/data/repo/home_repo.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
 import 'package:app_doctor/features/Login/data/repo/loginRepo.dart';
 import 'package:app_doctor/features/SignUp/data/cubit/signup_cubit.dart';
@@ -16,9 +18,15 @@ void setupGetIt() {
 
   // ApiService: نفس النسخة طوال التطبيق
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio),);
+
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
   getIt.registerLazySingleton<Signuprepo>(() => Signuprepo(getIt()));
   getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
+
+  // home
+  getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
+  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
 
 }

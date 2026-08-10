@@ -1,3 +1,5 @@
+import 'package:app_doctor/core/Route/routes.dart';
+import 'package:app_doctor/core/helper/extensions.dart';
 import 'package:app_doctor/features/Home/view/home_screen.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_cubit.dart';
 import 'package:app_doctor/features/Login/data/cubit/login_state.dart';
@@ -27,11 +29,8 @@ class LoginBlocListener extends StatelessWidget {
             );
           },
           success: (loginResponse) {
-            Navigator.pop(context);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (c) => HomeScreen()),
-            );
+            context.pop();
+            context.pushNamed(Routes.homeScreen);
           },
           error: (error) {
             setupErrorState(context, error);

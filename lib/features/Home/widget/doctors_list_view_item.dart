@@ -1,14 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:app_doctor/features/Home/data/model/specializations_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
+  final Doctors doctor;
+
   const DoctorsListViewItem({
     super.key,
+    required this.doctor,
   });
 
   @override
@@ -33,19 +35,21 @@ class DoctorsListViewItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Doctor image
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
             child: Image.network(
-              'https://static.wikia.nocookie.net/five-world-war/images/6/64/Hisoka.jpg/revision/latest?cb=20190313114050',
+              doctor.photo ?? '',
               width: 100.w,
               height: 120.h,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                debugPrint('ERROR: $error');
-                return const Icon(
-                  Icons.error,
-                  size: 50,
+                return SizedBox(
+                  width: 100.w,
+                  height: 120.h,
+                  child: const Icon(
+                    Icons.person,
+                    size: 50,
+                  ),
                 );
               },
             ),
@@ -53,7 +57,6 @@ class DoctorsListViewItem extends StatelessWidget {
 
           SizedBox(width: 14.w),
 
-          // Doctor information
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 4.h),
@@ -61,7 +64,7 @@ class DoctorsListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'khalaf',
+                    doctor.name ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.font18DarkBlueBold,
@@ -70,7 +73,7 @@ class DoctorsListViewItem extends StatelessWidget {
                   SizedBox(height: 8.h),
 
                   Text(
-                    'Computer Engineer',
+                    doctor.degree ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.font12GrayMedium,
@@ -88,7 +91,7 @@ class DoctorsListViewItem extends StatelessWidget {
                       SizedBox(width: 5.w),
                       Expanded(
                         child: Text(
-                          '33634066',
+                          doctor.phone ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyles.font12GrayMedium,
@@ -109,7 +112,7 @@ class DoctorsListViewItem extends StatelessWidget {
                       SizedBox(width: 5.w),
                       Expanded(
                         child: Text(
-                          'khalafyd@gmail.com',
+                          doctor.email ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyles.font12GrayMedium,
