@@ -16,6 +16,7 @@ class SpecializationsBlocBuilder extends StatefulWidget {
 class _SpecializationsBlocBuilderState
     extends State<SpecializationsBlocBuilder> {
   int selectedIndex = 0;
+  var selectedSpecializationIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,8 @@ class _SpecializationsBlocBuilderState
           },
 
           specializationsSuccess: (specializationDataList) {
-            final specializationsList =
-                specializationDataList.specializationDataList;
+            var specializationsList = specializationDataList;
             return setupSuccess(specializationsList);
-
           },
 
           specializationsError: (errorHandler) => setupError(),
@@ -46,22 +45,25 @@ class _SpecializationsBlocBuilderState
   }
 Widget setupSuccess(specializationsList) {
   return SizedBox(
-    height: 90.h,
+    height: 100.h,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: specializationsList?.length ?? 0,
+      itemCount: specializationsList.length,
       itemBuilder: (context, index) {
-        final specialization = specializationsList![index];
-
-        return SpecialityListViewItem(
-          itemIndex: index,
-          selectedIndex: selectedIndex,
-          title: specialization?.name ?? '',
+        return GestureDetector(
           onTap: () {
             setState(() {
-              selectedIndex = index;
+              selectedSpecializationIndex = index;
             });
+            context.read<HomeCubit>().getDoctorsList(
+              specializationId: specializationsList[index]?.id,
+            );
           },
+          child: SpecialityListViewItem(
+            specializationsData: specializationsList[index],
+            itemIndex: index,
+            selectedIndex: selectedSpecializationIndex,
+          ),
         );
       },
     ),
