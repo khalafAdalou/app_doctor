@@ -2,6 +2,7 @@
 
 import 'package:app_doctor/core/network/ApiConstants.dart';
 import 'package:app_doctor/features/Home/data/model/specializations_response_model.dart';
+import 'package:app_doctor/features/profile/data/model/profile_response_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,4 +16,7 @@ abstract class HomeApiService {
 
   @GET(HomeApiConstants.specializationEP)
   Future<SpecializationsResponseModel> getSpecialization();
+
+  @GET(ApiConstants.profile)
+  Future<UsersResponseModel> getProfile();
 }

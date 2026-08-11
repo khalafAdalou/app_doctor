@@ -13,6 +13,31 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<SpecializationsData?>? specializationsList = [];
 
+  void getProfile() async {
+    emit(const HomeState.profileLoading());
+
+    final response = await _homeRepo.getProfile();
+
+    response.when(
+      success: (profileResponseModel) {
+        print('PROFILE RESPONSE: ${profileResponseModel.usersList}');
+        print('PROFILE NAME: ${profileResponseModel.usersList?.first?.name}');
+
+        final userData =
+        profileResponseModel.usersList?.isNotEmpty == true
+            ? profileResponseModel.usersList!.first
+            : null;
+
+        print('USER DATA NAME: ${userData?.name}');
+
+        emit(HomeState.profileSuccess(userData!));
+      },
+      failure: (errorHandler) {
+        print('PROFILE ERROR: $errorHandler');
+        emit(HomeState.profileError(errorHandler));
+      },
+    );
+  }
   void getSpecializations() async {
     emit(const HomeState.specializationsLoading());
     final response = await _homeRepo.getSpecialization();
