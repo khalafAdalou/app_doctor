@@ -1,6 +1,9 @@
+import 'package:app_doctor/core/helper/extensions.dart';
 import 'package:app_doctor/features/Home/data/cubit/home_cubit.dart';
 import 'package:app_doctor/features/Home/data/cubit/home_state.dart';
+import 'package:app_doctor/features/Home/widget/doctorUI/doctors_shimmer_loading.dart';
 import 'package:app_doctor/features/Home/widget/specialization/speciality_list_view_item.dart';
+import 'package:app_doctor/features/Home/widget/specialization/speciality_shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,14 +73,16 @@ Widget setupSuccess(specializationsList) {
   );
 
 }
-Widget setupLoading() {
-  return SizedBox(
-    height: 90.h,
-    child: const Center(
-      child: CircularProgressIndicator(),
-    ),
-  );
-}
+  /// shimmer loading for specializations and doctors
+  Widget setupLoading() {
+    return Column(
+      children: [
+        const SpecialityShimmerLoading(),
+        verticalSpace(8),
+        const DoctorsShimmerLoading(),
+      ],
+    );
+  }
 
 
 Widget setupError() {
