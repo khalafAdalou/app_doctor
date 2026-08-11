@@ -55,7 +55,7 @@ extension HomeStatePatterns on HomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( SpecializationsLoading value)?  specializationsLoading,TResult Function( SpecializationsSuccess value)?  specializationsSuccess,TResult Function( SpecializationsError value)?  specializationsError,TResult Function( DoctorsSuccess value)?  doctorsSuccess,TResult Function( DoctorsError value)?  doctorsError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( SpecializationsLoading value)?  specializationsLoading,TResult Function( SpecializationsSuccess value)?  specializationsSuccess,TResult Function( SpecializationsError value)?  specializationsError,TResult Function( DoctorsSuccess value)?  doctorsSuccess,TResult Function( DoctorsError value)?  doctorsError,TResult Function( ProfileLoading value)?  profileLoading,TResult Function( ProfileSuccess value)?  profileSuccess,TResult Function( ProfileError value)?  profileError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -64,7 +64,10 @@ return specializationsLoading(_that);case SpecializationsSuccess() when speciali
 return specializationsSuccess(_that);case SpecializationsError() when specializationsError != null:
 return specializationsError(_that);case DoctorsSuccess() when doctorsSuccess != null:
 return doctorsSuccess(_that);case DoctorsError() when doctorsError != null:
-return doctorsError(_that);case _:
+return doctorsError(_that);case ProfileLoading() when profileLoading != null:
+return profileLoading(_that);case ProfileSuccess() when profileSuccess != null:
+return profileSuccess(_that);case ProfileError() when profileError != null:
+return profileError(_that);case _:
   return orElse();
 
 }
@@ -82,7 +85,7 @@ return doctorsError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( SpecializationsLoading value)  specializationsLoading,required TResult Function( SpecializationsSuccess value)  specializationsSuccess,required TResult Function( SpecializationsError value)  specializationsError,required TResult Function( DoctorsSuccess value)  doctorsSuccess,required TResult Function( DoctorsError value)  doctorsError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( SpecializationsLoading value)  specializationsLoading,required TResult Function( SpecializationsSuccess value)  specializationsSuccess,required TResult Function( SpecializationsError value)  specializationsError,required TResult Function( DoctorsSuccess value)  doctorsSuccess,required TResult Function( DoctorsError value)  doctorsError,required TResult Function( ProfileLoading value)  profileLoading,required TResult Function( ProfileSuccess value)  profileSuccess,required TResult Function( ProfileError value)  profileError,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -91,7 +94,10 @@ return specializationsLoading(_that);case SpecializationsSuccess():
 return specializationsSuccess(_that);case SpecializationsError():
 return specializationsError(_that);case DoctorsSuccess():
 return doctorsSuccess(_that);case DoctorsError():
-return doctorsError(_that);case _:
+return doctorsError(_that);case ProfileLoading():
+return profileLoading(_that);case ProfileSuccess():
+return profileSuccess(_that);case ProfileError():
+return profileError(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -108,7 +114,7 @@ return doctorsError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( SpecializationsLoading value)?  specializationsLoading,TResult? Function( SpecializationsSuccess value)?  specializationsSuccess,TResult? Function( SpecializationsError value)?  specializationsError,TResult? Function( DoctorsSuccess value)?  doctorsSuccess,TResult? Function( DoctorsError value)?  doctorsError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( SpecializationsLoading value)?  specializationsLoading,TResult? Function( SpecializationsSuccess value)?  specializationsSuccess,TResult? Function( SpecializationsError value)?  specializationsError,TResult? Function( DoctorsSuccess value)?  doctorsSuccess,TResult? Function( DoctorsError value)?  doctorsError,TResult? Function( ProfileLoading value)?  profileLoading,TResult? Function( ProfileSuccess value)?  profileSuccess,TResult? Function( ProfileError value)?  profileError,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -117,7 +123,10 @@ return specializationsLoading(_that);case SpecializationsSuccess() when speciali
 return specializationsSuccess(_that);case SpecializationsError() when specializationsError != null:
 return specializationsError(_that);case DoctorsSuccess() when doctorsSuccess != null:
 return doctorsSuccess(_that);case DoctorsError() when doctorsError != null:
-return doctorsError(_that);case _:
+return doctorsError(_that);case ProfileLoading() when profileLoading != null:
+return profileLoading(_that);case ProfileSuccess() when profileSuccess != null:
+return profileSuccess(_that);case ProfileError() when profileError != null:
+return profileError(_that);case _:
   return null;
 
 }
@@ -134,7 +143,7 @@ return doctorsError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  specializationsLoading,TResult Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult Function( ErrorHandler errorHandler)?  specializationsError,TResult Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult Function( ErrorHandler errorHandler)?  doctorsError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  specializationsLoading,TResult Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult Function( ErrorHandler errorHandler)?  specializationsError,TResult Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult Function( ErrorHandler errorHandler)?  doctorsError,TResult Function()?  profileLoading,TResult Function( UserData profileResponseModel)?  profileSuccess,TResult Function( ErrorHandler errorHandler)?  profileError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case SpecializationsLoading() when specializationsLoading != null:
@@ -142,7 +151,10 @@ return specializationsLoading();case SpecializationsSuccess() when specializatio
 return specializationsSuccess(_that.specializationDataList);case SpecializationsError() when specializationsError != null:
 return specializationsError(_that.errorHandler);case DoctorsSuccess() when doctorsSuccess != null:
 return doctorsSuccess(_that.doctorsList);case DoctorsError() when doctorsError != null:
-return doctorsError(_that.errorHandler);case _:
+return doctorsError(_that.errorHandler);case ProfileLoading() when profileLoading != null:
+return profileLoading();case ProfileSuccess() when profileSuccess != null:
+return profileSuccess(_that.profileResponseModel);case ProfileError() when profileError != null:
+return profileError(_that.errorHandler);case _:
   return orElse();
 
 }
@@ -160,7 +172,7 @@ return doctorsError(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  specializationsLoading,required TResult Function( List<SpecializationsData?>? specializationDataList)  specializationsSuccess,required TResult Function( ErrorHandler errorHandler)  specializationsError,required TResult Function( List<Doctors?>? doctorsList)  doctorsSuccess,required TResult Function( ErrorHandler errorHandler)  doctorsError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  specializationsLoading,required TResult Function( List<SpecializationsData?>? specializationDataList)  specializationsSuccess,required TResult Function( ErrorHandler errorHandler)  specializationsError,required TResult Function( List<Doctors?>? doctorsList)  doctorsSuccess,required TResult Function( ErrorHandler errorHandler)  doctorsError,required TResult Function()  profileLoading,required TResult Function( UserData profileResponseModel)  profileSuccess,required TResult Function( ErrorHandler errorHandler)  profileError,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case SpecializationsLoading():
@@ -168,7 +180,10 @@ return specializationsLoading();case SpecializationsSuccess():
 return specializationsSuccess(_that.specializationDataList);case SpecializationsError():
 return specializationsError(_that.errorHandler);case DoctorsSuccess():
 return doctorsSuccess(_that.doctorsList);case DoctorsError():
-return doctorsError(_that.errorHandler);case _:
+return doctorsError(_that.errorHandler);case ProfileLoading():
+return profileLoading();case ProfileSuccess():
+return profileSuccess(_that.profileResponseModel);case ProfileError():
+return profileError(_that.errorHandler);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -185,7 +200,7 @@ return doctorsError(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  specializationsLoading,TResult? Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult? Function( ErrorHandler errorHandler)?  specializationsError,TResult? Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult? Function( ErrorHandler errorHandler)?  doctorsError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  specializationsLoading,TResult? Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult? Function( ErrorHandler errorHandler)?  specializationsError,TResult? Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult? Function( ErrorHandler errorHandler)?  doctorsError,TResult? Function()?  profileLoading,TResult? Function( UserData profileResponseModel)?  profileSuccess,TResult? Function( ErrorHandler errorHandler)?  profileError,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case SpecializationsLoading() when specializationsLoading != null:
@@ -193,7 +208,10 @@ return specializationsLoading();case SpecializationsSuccess() when specializatio
 return specializationsSuccess(_that.specializationDataList);case SpecializationsError() when specializationsError != null:
 return specializationsError(_that.errorHandler);case DoctorsSuccess() when doctorsSuccess != null:
 return doctorsSuccess(_that.doctorsList);case DoctorsError() when doctorsError != null:
-return doctorsError(_that.errorHandler);case _:
+return doctorsError(_that.errorHandler);case ProfileLoading() when profileLoading != null:
+return profileLoading();case ProfileSuccess() when profileSuccess != null:
+return profileSuccess(_that.profileResponseModel);case ProfileError() when profileError != null:
+return profileError(_that.errorHandler);case _:
   return null;
 
 }
@@ -537,6 +555,170 @@ class _$DoctorsErrorCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
   return _then(DoctorsError(
+null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
+as ErrorHandler,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ProfileLoading implements HomeState {
+  const ProfileLoading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeState.profileLoading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class ProfileSuccess implements HomeState {
+  const ProfileSuccess(this.profileResponseModel);
+  
+
+ final  UserData profileResponseModel;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProfileSuccessCopyWith<ProfileSuccess> get copyWith => _$ProfileSuccessCopyWithImpl<ProfileSuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileSuccess&&(identical(other.profileResponseModel, profileResponseModel) || other.profileResponseModel == profileResponseModel));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,profileResponseModel);
+
+@override
+String toString() {
+  return 'HomeState.profileSuccess(profileResponseModel: $profileResponseModel)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ProfileSuccessCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $ProfileSuccessCopyWith(ProfileSuccess value, $Res Function(ProfileSuccess) _then) = _$ProfileSuccessCopyWithImpl;
+@useResult
+$Res call({
+ UserData profileResponseModel
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProfileSuccessCopyWithImpl<$Res>
+    implements $ProfileSuccessCopyWith<$Res> {
+  _$ProfileSuccessCopyWithImpl(this._self, this._then);
+
+  final ProfileSuccess _self;
+  final $Res Function(ProfileSuccess) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? profileResponseModel = null,}) {
+  return _then(ProfileSuccess(
+null == profileResponseModel ? _self.profileResponseModel : profileResponseModel // ignore: cast_nullable_to_non_nullable
+as UserData,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ProfileError implements HomeState {
+  const ProfileError(this.errorHandler);
+  
+
+ final  ErrorHandler errorHandler;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProfileErrorCopyWith<ProfileError> get copyWith => _$ProfileErrorCopyWithImpl<ProfileError>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileError&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorHandler);
+
+@override
+String toString() {
+  return 'HomeState.profileError(errorHandler: $errorHandler)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ProfileErrorCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $ProfileErrorCopyWith(ProfileError value, $Res Function(ProfileError) _then) = _$ProfileErrorCopyWithImpl;
+@useResult
+$Res call({
+ ErrorHandler errorHandler
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProfileErrorCopyWithImpl<$Res>
+    implements $ProfileErrorCopyWith<$Res> {
+  _$ProfileErrorCopyWithImpl(this._self, this._then);
+
+  final ProfileError _self;
+  final $Res Function(ProfileError) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
+  return _then(ProfileError(
 null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
 as ErrorHandler,
   ));
