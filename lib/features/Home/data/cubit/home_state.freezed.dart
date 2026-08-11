@@ -134,7 +134,7 @@ return doctorsError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  specializationsLoading,TResult Function( SpecializationsResponseModel specializationDataList)?  specializationsSuccess,TResult Function( ErrorHandler errorHandler)?  specializationsError,TResult Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult Function( ErrorHandler errorHandler)?  doctorsError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  specializationsLoading,TResult Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult Function( ErrorHandler errorHandler)?  specializationsError,TResult Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult Function( ErrorHandler errorHandler)?  doctorsError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case SpecializationsLoading() when specializationsLoading != null:
@@ -160,7 +160,7 @@ return doctorsError(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  specializationsLoading,required TResult Function( SpecializationsResponseModel specializationDataList)  specializationsSuccess,required TResult Function( ErrorHandler errorHandler)  specializationsError,required TResult Function( List<Doctors?>? doctorsList)  doctorsSuccess,required TResult Function( ErrorHandler errorHandler)  doctorsError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  specializationsLoading,required TResult Function( List<SpecializationsData?>? specializationDataList)  specializationsSuccess,required TResult Function( ErrorHandler errorHandler)  specializationsError,required TResult Function( List<Doctors?>? doctorsList)  doctorsSuccess,required TResult Function( ErrorHandler errorHandler)  doctorsError,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case SpecializationsLoading():
@@ -185,7 +185,7 @@ return doctorsError(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  specializationsLoading,TResult? Function( SpecializationsResponseModel specializationDataList)?  specializationsSuccess,TResult? Function( ErrorHandler errorHandler)?  specializationsError,TResult? Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult? Function( ErrorHandler errorHandler)?  doctorsError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  specializationsLoading,TResult? Function( List<SpecializationsData?>? specializationDataList)?  specializationsSuccess,TResult? Function( ErrorHandler errorHandler)?  specializationsError,TResult? Function( List<Doctors?>? doctorsList)?  doctorsSuccess,TResult? Function( ErrorHandler errorHandler)?  doctorsError,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case SpecializationsLoading() when specializationsLoading != null:
@@ -269,10 +269,18 @@ String toString() {
 
 
 class SpecializationsSuccess implements HomeState {
-  const SpecializationsSuccess(this.specializationDataList);
+  const SpecializationsSuccess(final  List<SpecializationsData?>? specializationDataList): _specializationDataList = specializationDataList;
   
 
- final  SpecializationsResponseModel specializationDataList;
+ final  List<SpecializationsData?>? _specializationDataList;
+ List<SpecializationsData?>? get specializationDataList {
+  final value = _specializationDataList;
+  if (value == null) return null;
+  if (_specializationDataList is EqualUnmodifiableListView) return _specializationDataList;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -284,12 +292,12 @@ $SpecializationsSuccessCopyWith<SpecializationsSuccess> get copyWith => _$Specia
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationsSuccess&&(identical(other.specializationDataList, specializationDataList) || other.specializationDataList == specializationDataList));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationsSuccess&&const DeepCollectionEquality().equals(other._specializationDataList, _specializationDataList));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,specializationDataList);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_specializationDataList));
 
 @override
 String toString() {
@@ -304,7 +312,7 @@ abstract mixin class $SpecializationsSuccessCopyWith<$Res> implements $HomeState
   factory $SpecializationsSuccessCopyWith(SpecializationsSuccess value, $Res Function(SpecializationsSuccess) _then) = _$SpecializationsSuccessCopyWithImpl;
 @useResult
 $Res call({
- SpecializationsResponseModel specializationDataList
+ List<SpecializationsData?>? specializationDataList
 });
 
 
@@ -321,10 +329,10 @@ class _$SpecializationsSuccessCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? specializationDataList = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? specializationDataList = freezed,}) {
   return _then(SpecializationsSuccess(
-null == specializationDataList ? _self.specializationDataList : specializationDataList // ignore: cast_nullable_to_non_nullable
-as SpecializationsResponseModel,
+freezed == specializationDataList ? _self._specializationDataList : specializationDataList // ignore: cast_nullable_to_non_nullable
+as List<SpecializationsData?>?,
   ));
 }
 

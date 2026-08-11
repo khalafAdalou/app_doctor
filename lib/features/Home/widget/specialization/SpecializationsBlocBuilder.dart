@@ -1,6 +1,6 @@
 import 'package:app_doctor/features/Home/data/cubit/home_cubit.dart';
 import 'package:app_doctor/features/Home/data/cubit/home_state.dart';
-import 'package:app_doctor/features/Home/widget/speciality_list_view_item.dart';
+import 'package:app_doctor/features/Home/widget/specialization/speciality_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
